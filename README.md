@@ -26,7 +26,8 @@ dotnet run --project src/WindowFactory.Desktop
 dotnet test
 ```
 
-Требуется .NET 8 SDK.
+Требуется .NET SDK 10 (проверено на 10.0.112+; `global.json` разрешает 10.0.100 и новее). Проекты нацелены на `net10.0`.
+EF Core и Pomelo — ветка 9.x (Pomelo пока не выпустил версию под EF Core 10); на runtime .NET 10 работает без проблем.
 
 ## Демо-учётные записи
 
