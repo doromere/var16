@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="WindowFactory.Desktop.Views.Dialogs.UnitEditDialog"
+        Title="{Binding Title}" Width="540" SizeToContent="Height" CanResize="False"
+        WindowStartupLocation="CenterOwner" Icon="/Assets/logo.png">
+  <StackPanel Margin="20" Spacing="10">
+    <StackPanel>
+      <TextBlock Classes="label" Text="Профильная система"/>
+      <ComboBox ItemsSource="{Binding Profiles}" SelectedItem="{Binding SelectedProfile}" HorizontalAlignment="Stretch"/>
+    </StackPanel>
+    <StackPanel>
+      <TextBlock Classes="label" Text="Стеклопакет"/>
+      <ComboBox ItemsSource="{Binding Glazings}" SelectedItem="{Binding SelectedGlazing}" HorizontalAlignment="Stretch"/>
+    </StackPanel>
+    <Grid ColumnDefinitions="*,*,*">
+      <StackPanel Margin="0 0 8 0">
+        <TextBlock Classes="label" Text="Ширина, мм"/>
+        <NumericUpDown Value="{Binding Width}" Minimum="0" Maximum="5000" Increment="10" FormatString="0"/>
+      </StackPanel>
+      <StackPanel Grid.Column="1" Margin="0 0 8 0">
+        <TextBlock Classes="label" Text="Высота, мм"/>
+        <NumericUpDown Value="{Binding Height}" Minimum="0" Maximum="5000" Increment="10" FormatString="0"/>
+      </StackPanel>
+      <StackPanel Grid.Column="2">
+        <TextBlock Classes="label" Text="Створок"/>
+        <NumericUpDown Value="{Binding Sashes}" Minimum="0" Maximum="20" Increment="1" FormatString="0"/>
+      </StackPanel>
+    </Grid>
+    <TextBlock Foreground="#64748B" FontSize="12" Text="Допустимо: ширина 400–1500 мм, высота 400–2200 мм, створок 1–6."/>
+    <Border Background="#EFF6FF" CornerRadius="6" Padding="10">
+      <TextBlock Text="{Binding Preview}" TextWrapping="Wrap" Foreground="#1E3A8A"/>
+    </Border>
+    <TextBlock Classes="error" Text="{Binding ErrorText}" IsVisible="{Binding ErrorText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+      <Button Content="Отмена" Command="{Binding CancelCommand}"/>
+      <Button Classes="primary" Content="OK" Command="{Binding OkCommand}" IsDefault="True"/>
+    </StackPanel>
+  </StackPanel>
+</Window>

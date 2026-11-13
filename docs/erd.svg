@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="720" font-family="Segoe UI,Arial,sans-serif" font-size="13">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="40" y="34" font-size="20" font-weight="bold" fill="#1f2937">ERD — база данных window_factory (MySQL/MariaDB, 3НФ)</text>
+<line x1="310" y1="101" x2="360" y2="123" stroke="#475569" stroke-width="1.6"/>
+<text x="318" y="95" fill="#b45309" font-weight="bold">1</text>
+<text x="344" y="117" fill="#b45309" font-weight="bold">N</text>
+<line x1="630" y1="101" x2="700" y2="145" stroke="#475569" stroke-width="1.6"/>
+<text x="638" y="95" fill="#b45309" font-weight="bold">1</text>
+<text x="684" y="139" fill="#b45309" font-weight="bold">N</text>
+<line x1="1040" y1="101" x2="970" y2="167" stroke="#475569" stroke-width="1.6"/>
+<text x="1024" y="95" fill="#b45309" font-weight="bold">1</text>
+<text x="978" y="161" fill="#b45309" font-weight="bold">N</text>
+<line x1="835" y1="310" x2="835" y2="430" stroke="#475569" stroke-width="1.6"/>
+<text x="843" y="326" fill="#b45309" font-weight="bold">1</text>
+<text x="843" y="422" fill="#b45309" font-weight="bold">N</text>
+<line x1="630" y1="471" x2="700" y2="515" stroke="#475569" stroke-width="1.6"/>
+<text x="638" y="465" fill="#b45309" font-weight="bold">1</text>
+<text x="684" y="509" fill="#b45309" font-weight="bold">N</text>
+<line x1="1040" y1="471" x2="970" y2="537" stroke="#475569" stroke-width="1.6"/>
+<text x="1024" y="465" fill="#b45309" font-weight="bold">1</text>
+<text x="978" y="531" fill="#b45309" font-weight="bold">N</text>
+<rect x="40" y="60" width="270" height="74" rx="6" fill="#fff" stroke="#334155" stroke-width="1.6"/>
+<path d="M40,90 V66 a6,6 0 0 1 6,-6 H304 a6,6 0 0 1 6,6 V90 Z" fill="#1d4ed8"/>
+<text x="175.0" y="80" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">roles</text>
+<text x="48" y="105" fill="#b45309" font-weight="bold" font-size="11">PK</text>
+<text x="74" y="105" fill="#0f172a" font-weight="bold">id</text>
+<text x="302" y="105" text-anchor="end" fill="#64748b" font-size="11">INT AI</text>
+<rect x="41" y="112" width="268" height="22" fill="#f1f5f9"/>
+<text x="48" y="127" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="74" y="127" fill="#0f172a" font-weight="normal">name</text>
+<text x="302" y="127" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(100) UQ</text>
+<rect x="360" y="60" width="270" height="140" rx="6" fill="#fff" stroke="#334155" stroke-width="1.6"/>
+<path d="M360,90 V66 a6,6 0 0 1 6,-6 H624 a6,6 0 0 1 6,6 V90 Z" fill="#1d4ed8"/>
+<text x="495.0" y="80" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">users</text>
+<text x="368" y="105" fill="#b45309" font-weight="bold" font-size="11">PK</text>
+<text x="394" y="105" fill="#0f172a" font-weight="bold">id</text>
+<text x="622" y="105" text-anchor="end" fill="#64748b" font-size="11">INT AI</text>
+<rect x="361" y="112" width="268" height="22" fill="#f1f5f9"/>
+<text x="368" y="127" fill="#047857" font-weight="bold" font-size="11">FK</text>
+<text x="394" y="127" fill="#0f172a" font-weight="normal">role_id</text>
+<text x="622" y="127" text-anchor="end" fill="#64748b" font-size="11">INT → roles</text>
+<text x="368" y="149" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="394" y="149" fill="#0f172a" font-weight="normal">login</text>
+<text x="622" y="149" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(50) UQ</text>
+<rect x="361" y="156" width="268" height="22" fill="#f1f5f9"/>
+<text x="368" y="171" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="394" y="171" fill="#0f172a" font-weight="normal">password_hash</text>
+<text x="622" y="171" text-anchor="end" fill="#64748b" font-size="11">CHAR(64) SHA256</text>
+<text x="368" y="193" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="394" y="193" fill="#0f172a" font-weight="normal">full_name</text>
+<text x="622" y="193" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(150)</text>
+<rect x="700" y="60" width="270" height="250" rx="6" fill="#fff" stroke="#334155" stroke-width="1.6"/>
+<path d="M700,90 V66 a6,6 0 0 1 6,-6 H964 a6,6 0 0 1 6,6 V90 Z" fill="#1d4ed8"/>
+<text x="835.0" y="80" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">window_orders</text>
+<text x="708" y="105" fill="#b45309" font-weight="bold" font-size="11">PK</text>
+<text x="734" y="105" fill="#0f172a" font-weight="bold">id</text>
+<text x="962" y="105" text-anchor="end" fill="#64748b" font-size="11">INT AI</text>
+<rect x="701" y="112" width="268" height="22" fill="#f1f5f9"/>
+<text x="708" y="127" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="127" fill="#0f172a" font-weight="normal">order_num</text>
+<text x="962" y="127" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(20) UQ</text>
+<text x="708" y="149" fill="#047857" font-weight="bold" font-size="11">FK</text>
+<text x="734" y="149" fill="#0f172a" font-weight="normal">user_id</text>
+<text x="962" y="149" text-anchor="end" fill="#64748b" font-size="11">INT → users</text>
+<rect x="701" y="156" width="268" height="22" fill="#f1f5f9"/>
+<text x="708" y="171" fill="#047857" font-weight="bold" font-size="11">FK</text>
+<text x="734" y="171" fill="#0f172a" font-weight="normal">homeowner_id</text>
+<text x="962" y="171" text-anchor="end" fill="#64748b" font-size="11">INT → homeowners</text>
+<text x="708" y="193" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="193" fill="#0f172a" font-weight="normal">order_date</text>
+<text x="962" y="193" text-anchor="end" fill="#64748b" font-size="11">DATETIME</text>
+<rect x="701" y="200" width="268" height="22" fill="#f1f5f9"/>
+<text x="708" y="215" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="215" fill="#0f172a" font-weight="normal">has_installation</text>
+<text x="962" y="215" text-anchor="end" fill="#64748b" font-size="11">TINYINT(1)</text>
+<text x="708" y="237" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="237" fill="#0f172a" font-weight="normal">total_price</text>
+<text x="962" y="237" text-anchor="end" fill="#64748b" font-size="11">DECIMAL(12,2)</text>
+<rect x="701" y="244" width="268" height="22" fill="#f1f5f9"/>
+<text x="708" y="259" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="259" fill="#0f172a" font-weight="normal">status</text>
+<text x="962" y="259" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(30)</text>
+<text x="708" y="281" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="281" fill="#0f172a" font-weight="normal">cancel_reason</text>
+<text x="962" y="281" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(500) NULL</text>
+<rect x="701" y="288" width="268" height="22" fill="#f1f5f9"/>
+<text x="708" y="303" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="303" fill="#0f172a" font-weight="normal">completed_at</text>
+<text x="962" y="303" text-anchor="end" fill="#64748b" font-size="11">DATETIME NULL</text>
+<rect x="1040" y="60" width="270" height="162" rx="6" fill="#fff" stroke="#334155" stroke-width="1.6"/>
+<path d="M1040,90 V66 a6,6 0 0 1 6,-6 H1304 a6,6 0 0 1 6,6 V90 Z" fill="#1d4ed8"/>
+<text x="1175.0" y="80" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">homeowners</text>
+<text x="1048" y="105" fill="#b45309" font-weight="bold" font-size="11">PK</text>
+<text x="1074" y="105" fill="#0f172a" font-weight="bold">id</text>
+<text x="1302" y="105" text-anchor="end" fill="#64748b" font-size="11">INT AI</text>
+<rect x="1041" y="112" width="268" height="22" fill="#f1f5f9"/>
+<text x="1048" y="127" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="1074" y="127" fill="#0f172a" font-weight="normal">full_name</text>
+<text x="1302" y="127" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(150)</text>
+<text x="1048" y="149" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="1074" y="149" fill="#0f172a" font-weight="normal">delivery_address</text>
+<text x="1302" y="149" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(250)</text>
+<rect x="1041" y="156" width="268" height="22" fill="#f1f5f9"/>
+<text x="1048" y="171" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="1074" y="171" fill="#0f172a" font-weight="normal">floor_number</text>
+<text x="1302" y="171" text-anchor="end" fill="#64748b" font-size="11">INT</text>
+<text x="1048" y="193" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="1074" y="193" fill="#0f172a" font-weight="normal">has_elevator</text>
+<text x="1302" y="193" text-anchor="end" fill="#64748b" font-size="11">TINYINT(1)</text>
+<rect x="1041" y="200" width="268" height="22" fill="#f1f5f9"/>
+<text x="1048" y="215" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="1074" y="215" fill="#0f172a" font-weight="normal">phone</text>
+<text x="1302" y="215" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(20)</text>
+<rect x="360" y="430" width="270" height="140" rx="6" fill="#fff" stroke="#334155" stroke-width="1.6"/>
+<path d="M360,460 V436 a6,6 0 0 1 6,-6 H624 a6,6 0 0 1 6,6 V460 Z" fill="#1d4ed8"/>
+<text x="495.0" y="450" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">profile_systems</text>
+<text x="368" y="475" fill="#b45309" font-weight="bold" font-size="11">PK</text>
+<text x="394" y="475" fill="#0f172a" font-weight="bold">id</text>
+<text x="622" y="475" text-anchor="end" fill="#64748b" font-size="11">INT AI</text>
+<rect x="361" y="482" width="268" height="22" fill="#f1f5f9"/>
+<text x="368" y="497" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="394" y="497" fill="#0f172a" font-weight="normal">brand_title</text>
+<text x="622" y="497" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(100)</text>
+<text x="368" y="519" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="394" y="519" fill="#0f172a" font-weight="normal">chambers_count</text>
+<text x="622" y="519" text-anchor="end" fill="#64748b" font-size="11">INT</text>
+<rect x="361" y="526" width="268" height="22" fill="#f1f5f9"/>
+<text x="368" y="541" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="394" y="541" fill="#0f172a" font-weight="normal">frame_depth_mm</text>
+<text x="622" y="541" text-anchor="end" fill="#64748b" font-size="11">INT</text>
+<text x="368" y="563" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="394" y="563" fill="#0f172a" font-weight="normal">price_per_meter</text>
+<text x="622" y="563" text-anchor="end" fill="#64748b" font-size="11">DECIMAL(10,2)</text>
+<rect x="700" y="430" width="270" height="206" rx="6" fill="#fff" stroke="#334155" stroke-width="1.6"/>
+<path d="M700,460 V436 a6,6 0 0 1 6,-6 H964 a6,6 0 0 1 6,6 V460 Z" fill="#1d4ed8"/>
+<text x="835.0" y="450" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">window_order_units</text>
+<text x="708" y="475" fill="#b45309" font-weight="bold" font-size="11">PK</text>
+<text x="734" y="475" fill="#0f172a" font-weight="bold">id</text>
+<text x="962" y="475" text-anchor="end" fill="#64748b" font-size="11">INT AI</text>
+<rect x="701" y="482" width="268" height="22" fill="#f1f5f9"/>
+<text x="708" y="497" fill="#047857" font-weight="bold" font-size="11">FK</text>
+<text x="734" y="497" fill="#0f172a" font-weight="normal">order_id</text>
+<text x="962" y="497" text-anchor="end" fill="#64748b" font-size="11">INT → window_orders</text>
+<text x="708" y="519" fill="#047857" font-weight="bold" font-size="11">FK</text>
+<text x="734" y="519" fill="#0f172a" font-weight="normal">profile_system_id</text>
+<text x="962" y="519" text-anchor="end" fill="#64748b" font-size="11">INT → profile_systems</text>
+<rect x="701" y="526" width="268" height="22" fill="#f1f5f9"/>
+<text x="708" y="541" fill="#047857" font-weight="bold" font-size="11">FK</text>
+<text x="734" y="541" fill="#0f172a" font-weight="normal">glazing_type_id</text>
+<text x="962" y="541" text-anchor="end" fill="#64748b" font-size="11">INT → glazing_types</text>
+<text x="708" y="563" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="563" fill="#0f172a" font-weight="normal">width_mm</text>
+<text x="962" y="563" text-anchor="end" fill="#64748b" font-size="11">INT 400..1500</text>
+<rect x="701" y="570" width="268" height="22" fill="#f1f5f9"/>
+<text x="708" y="585" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="585" fill="#0f172a" font-weight="normal">height_mm</text>
+<text x="962" y="585" text-anchor="end" fill="#64748b" font-size="11">INT</text>
+<text x="708" y="607" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="607" fill="#0f172a" font-weight="normal">sashes_count</text>
+<text x="962" y="607" text-anchor="end" fill="#64748b" font-size="11">INT</text>
+<rect x="701" y="614" width="268" height="22" fill="#f1f5f9"/>
+<text x="708" y="629" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="734" y="629" fill="#0f172a" font-weight="normal">unit_calculated_cost</text>
+<text x="962" y="629" text-anchor="end" fill="#64748b" font-size="11">DECIMAL(12,2)</text>
+<rect x="1040" y="430" width="270" height="140" rx="6" fill="#fff" stroke="#334155" stroke-width="1.6"/>
+<path d="M1040,460 V436 a6,6 0 0 1 6,-6 H1304 a6,6 0 0 1 6,6 V460 Z" fill="#1d4ed8"/>
+<text x="1175.0" y="450" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">glazing_types</text>
+<text x="1048" y="475" fill="#b45309" font-weight="bold" font-size="11">PK</text>
+<text x="1074" y="475" fill="#0f172a" font-weight="bold">id</text>
+<text x="1302" y="475" text-anchor="end" fill="#64748b" font-size="11">INT AI</text>
+<rect x="1041" y="482" width="268" height="22" fill="#f1f5f9"/>
+<text x="1048" y="497" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="1074" y="497" fill="#0f172a" font-weight="normal">glazing_name</text>
+<text x="1302" y="497" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(100)</text>
+<text x="1048" y="519" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="1074" y="519" fill="#0f172a" font-weight="normal">thickness_mm</text>
+<text x="1302" y="519" text-anchor="end" fill="#64748b" font-size="11">INT</text>
+<rect x="1041" y="526" width="268" height="22" fill="#f1f5f9"/>
+<text x="1048" y="541" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="1074" y="541" fill="#0f172a" font-weight="normal">energy_saving</text>
+<text x="1302" y="541" text-anchor="end" fill="#64748b" font-size="11">TINYINT(1)</text>
+<text x="1048" y="563" fill="#64748b" font-weight="bold" font-size="11"></text>
+<text x="1074" y="563" fill="#0f172a" font-weight="normal">price_per_m2</text>
+<text x="1302" y="563" text-anchor="end" fill="#64748b" font-size="11">DECIMAL(10,2)</text>
+<text x="40" y="690" fill="#475569" font-size="12">Связи 1 : N. window_order_units → window_orders: ON DELETE CASCADE; остальные внешние ключи: ON DELETE RESTRICT.</text>
+</svg>

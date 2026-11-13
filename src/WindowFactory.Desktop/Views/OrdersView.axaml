@@ -1,0 +1,68 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="using:WindowFactory.Desktop.Converters"
+             x:Class="WindowFactory.Desktop.Views.OrdersView">
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="8">
+    <!-- Поиск и фильтры -->
+    <Grid Grid.Row="0" ColumnDefinitions="2*,*,*,Auto" Margin="0 0 0 8">
+      <TextBox Grid.Column="0" Text="{Binding SearchText}" Watermark="🔍 Поиск: номер, заказчик, адрес, менеджер"/>
+      <ComboBox Grid.Column="1" Margin="8 0 0 0" HorizontalAlignment="Stretch" ItemsSource="{Binding StatusFilters}" SelectedItem="{Binding SelectedStatus}"/>
+      <ComboBox Grid.Column="2" Margin="8 0 0 0" HorizontalAlignment="Stretch" ItemsSource="{Binding ProfileFilters}" SelectedItem="{Binding SelectedProfile}"/>
+      <Button Grid.Column="3" Margin="8 0 0 0" Content="Обновить" Command="{Binding RefreshCommand}"/>
+    </Grid>
+
+    <!-- Действия -->
+    <WrapPanel Grid.Row="1" Margin="0 0 0 8">
+      <Button Classes="primary" Content="＋ Новый заказ" Command="{Binding NewOrderCommand}" Margin="0 0 6 6"/>
+      <Button Content="Открыть" Command="{Binding OpenOrderCommand}" Margin="0 0 6 6"/>
+      <Button Classes="danger" Content="Удалить" Command="{Binding DeleteOrderCommand}" Margin="0 0 18 6"/>
+      <Button Content="→ Передать в цех" Command="{Binding MoveCommand}" CommandParameter="Передано в цех" Margin="0 0 6 6"/>
+      <Button Content="→ Изготовлено" Command="{Binding MoveCommand}" CommandParameter="Изготовлено" Margin="0 0 6 6"/>
+      <Button Content="→ Смонтировано" Command="{Binding MoveCommand}" CommandParameter="Смонтировано" Margin="0 0 6 6"/>
+      <Button Content="→ Рекламация" Command="{Binding MoveCommand}" CommandParameter="Рекламация" Margin="0 0 18 6"/>
+      <Button Content="Карта раскроя…" Command="{Binding ExportCuttingMapCommand}" Margin="0 0 6 6"/>
+      <Button Content="Акт приёма-сдачи…" Command="{Binding ExportActCommand}" Margin="0 0 6 6"/>
+    </WrapPanel>
+
+    <DataGrid Grid.Row="2" Name="Grid" ItemsSource="{Binding View}" SelectedItem="{Binding SelectedOrder}"
+              AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="True" CanUserResizeColumns="True"
+              GridLinesVisibility="Horizontal" SelectionMode="Single" BorderBrush="#CBD5E1" BorderThickness="1">
+      <DataGrid.Styles>
+        <Style Selector="DataGridRow">
+          <Setter Property="Background" Value="{Binding Severity, Converter={x:Static conv:AppConverters.SeverityToBrush}}"/>
+        </Style>
+      </DataGrid.Styles>
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Номер" Binding="{Binding Number}" Width="200"/>
+        <DataGridTextColumn Header="Дата" Binding="{Binding OrderDate, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
+        <DataGridTextColumn Header="Заказчик" Binding="{Binding Homeowner}" Width="*" MinWidth="220"/>
+        <DataGridTextColumn Header="Профиль" Binding="{Binding Profiles}" Width="*" MinWidth="200"/>
+        <DataGridTextColumn Header="Поз." Binding="{Binding UnitsCount}" Width="70"/>
+        <DataGridTemplateColumn Header="Статус" SortMemberPath="Status" Width="150">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Border Classes="badge" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6 0"
+                      Background="{Binding Status, Converter={x:Static conv:AppConverters.StatusToBrush}}">
+                <TextBlock Text="{Binding Status}" Foreground="White" FontSize="12"/>
+              </Border>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTextColumn Header="Сумма, ₽" Binding="{Binding TotalPrice, StringFormat={}{0:N2}}" Width="120"/>
+        <DataGridTextColumn Header="Гарантия 36 мес." Binding="{Binding WarrantyText}" Width="200"/>
+        <DataGridTextColumn Header="Менеджер" Binding="{Binding Manager}" Width="200"/>
+      </DataGrid.Columns>
+    </DataGrid>
+
+    <Grid Grid.Row="3" ColumnDefinitions="*,Auto" Margin="0 8 0 0">
+      <TextBlock Grid.Column="0" Text="{Binding StatusMessage}" Foreground="#475569" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0 0 12 0"/>
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+        <TextBlock Text="{Binding WarrantySummary}" Foreground="#B45309" VerticalAlignment="Center" Margin="0 0 12 0"/>
+        <Border Background="#FECACA" Padding="6 2" CornerRadius="4"><TextBlock Text="рекламация" FontSize="12"/></Border>
+        <Border Background="#FED7AA" Padding="6 2" CornerRadius="4"><TextBlock Text="гарантия истекла" FontSize="12"/></Border>
+        <Border Background="#FEF08A" Padding="6 2" CornerRadius="4"><TextBlock Text="истекает" FontSize="12"/></Border>
+        <Border Background="#DCFCE7" Padding="6 2" CornerRadius="4"><TextBlock Text="на гарантии" FontSize="12"/></Border>
+      </StackPanel>
+    </Grid>
+  </Grid>
+</UserControl>

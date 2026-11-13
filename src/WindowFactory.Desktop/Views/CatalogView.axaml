@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="using:WindowFactory.Desktop.Converters"
+             x:Class="WindowFactory.Desktop.Views.CatalogView">
+  <Grid RowDefinitions="Auto,*" Margin="8">
+    <TextBlock Grid.Row="0" Text="{Binding Hint}" Foreground="#64748B" Margin="0 0 0 8"/>
+    <Grid Grid.Row="1" ColumnDefinitions="*,*">
+      <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*" Margin="0 0 8 0">
+        <TextBlock Classes="h1" FontSize="17" Text="Профильные системы (Rehau, Veka, …)" Margin="0 0 0 6"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6" Margin="0 0 0 8">
+          <Button Classes="primary" Content="＋ Добавить" Command="{Binding AddProfileCommand}"/>
+          <Button Content="Изменить" Command="{Binding EditProfileCommand}"/>
+          <Button Classes="danger" Content="Удалить" Command="{Binding DeleteProfileCommand}"/>
+        </StackPanel>
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Profiles}" SelectedItem="{Binding SelectedProfile}" AutoGenerateColumns="False"
+                  IsReadOnly="True" CanUserSortColumns="True" GridLinesVisibility="Horizontal" BorderBrush="#CBD5E1" BorderThickness="1">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="Система" Binding="{Binding BrandTitle}" Width="*"/>
+            <DataGridTextColumn Header="Камер" Binding="{Binding ChambersCount}" Width="70"/>
+            <DataGridTextColumn Header="Глубина, мм" Binding="{Binding FrameDepthMm}" Width="100"/>
+            <DataGridTextColumn Header="₽ / м.п." Binding="{Binding PricePerMeter, StringFormat={}{0:N2}}" Width="100"/>
+          </DataGrid.Columns>
+        </DataGrid>
+      </Grid>
+      <Grid Grid.Column="1" RowDefinitions="Auto,Auto,*" Margin="8 0 0 0">
+        <TextBlock Classes="h1" FontSize="17" Text="Стеклопакеты" Margin="0 0 0 6"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6" Margin="0 0 0 8">
+          <Button Classes="primary" Content="＋ Добавить" Command="{Binding AddGlazingCommand}"/>
+          <Button Content="Изменить" Command="{Binding EditGlazingCommand}"/>
+          <Button Classes="danger" Content="Удалить" Command="{Binding DeleteGlazingCommand}"/>
+        </StackPanel>
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Glazings}" SelectedItem="{Binding SelectedGlazing}" AutoGenerateColumns="False"
+                  IsReadOnly="True" CanUserSortColumns="True" GridLinesVisibility="Horizontal" BorderBrush="#CBD5E1" BorderThickness="1">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="Название" Binding="{Binding GlazingName}" Width="*"/>
+            <DataGridTextColumn Header="Толщина, мм" Binding="{Binding ThicknessMm}" Width="100"/>
+            <DataGridTextColumn Header="Энергосбер." Binding="{Binding EnergySaving, Converter={x:Static conv:AppConverters.YesNo}}" Width="100"/>
+            <DataGridTextColumn Header="₽ / м²" Binding="{Binding PricePerM2, StringFormat={}{0:N2}}" Width="100"/>
+          </DataGrid.Columns>
+        </DataGrid>
+      </Grid>
+    </Grid>
+  </Grid>
+</UserControl>

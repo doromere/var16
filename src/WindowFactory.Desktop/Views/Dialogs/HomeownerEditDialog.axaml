@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="WindowFactory.Desktop.Views.Dialogs.HomeownerEditDialog"
+        Title="{Binding Title}" Width="520" SizeToContent="Height" CanResize="False"
+        WindowStartupLocation="CenterOwner" Icon="/Assets/logo.png">
+  <StackPanel Margin="20" Spacing="10">
+    <StackPanel><TextBlock Classes="label" Text="ФИО"/><TextBox Text="{Binding FullName}"/></StackPanel>
+    <StackPanel><TextBlock Classes="label" Text="Адрес доставки"/><TextBox Text="{Binding DeliveryAddress}"/></StackPanel>
+    <Grid ColumnDefinitions="*,Auto,*">
+      <StackPanel Margin="0 0 8 0"><TextBlock Classes="label" Text="Этаж"/>
+        <NumericUpDown Value="{Binding FloorNumber}" Minimum="0" Maximum="100" FormatString="0"/></StackPanel>
+      <CheckBox Grid.Column="1" Content="Есть лифт" IsChecked="{Binding HasElevator}" VerticalAlignment="Bottom" Margin="0 0 12 4"/>
+      <StackPanel Grid.Column="2"><TextBlock Classes="label" Text="Телефон"/>
+        <TextBox Text="{Binding Phone}" Watermark="+7 (900) 123-45-67"/></StackPanel>
+    </Grid>
+    <TextBlock Classes="error" Text="{Binding ErrorText}" IsVisible="{Binding ErrorText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+      <Button Content="Отмена" Command="{Binding CancelCommand}"/>
+      <Button Classes="primary" Content="Сохранить" Command="{Binding OkCommand}" IsDefault="True"/>
+    </StackPanel>
+  </StackPanel>
+</Window>

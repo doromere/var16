@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="using:WindowFactory.Desktop.Converters"
+             x:Class="WindowFactory.Desktop.Views.HomeownersView">
+  <Grid RowDefinitions="Auto,Auto,*" Margin="8">
+    <TextBox Grid.Row="0" Text="{Binding SearchText}" Watermark="🔍 Поиск: ФИО, адрес, телефон" Margin="0 0 0 8"/>
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6" Margin="0 0 0 8">
+      <Button Classes="primary" Content="＋ Добавить" Command="{Binding AddCommand}"/>
+      <Button Content="Изменить" Command="{Binding EditCommand}"/>
+      <Button Classes="danger" Content="Удалить" Command="{Binding DeleteCommand}"/>
+      <TextBlock Text="Редактирование доступно менеджеру" Foreground="#64748B" VerticalAlignment="Center" Margin="12 0 0 0"
+                 IsVisible="{Binding !CanManage}"/>
+    </StackPanel>
+    <DataGrid Grid.Row="2" ItemsSource="{Binding View}" SelectedItem="{Binding Selected}" AutoGenerateColumns="False"
+              IsReadOnly="True" CanUserSortColumns="True" CanUserResizeColumns="True" GridLinesVisibility="Horizontal"
+              BorderBrush="#CBD5E1" BorderThickness="1">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*" MinWidth="180"/>
+        <DataGridTextColumn Header="Адрес доставки" Binding="{Binding DeliveryAddress}" Width="2*" MinWidth="220"/>
+        <DataGridTextColumn Header="Этаж" Binding="{Binding FloorNumber}" Width="70"/>
+        <DataGridTextColumn Header="Лифт" Binding="{Binding HasElevator, Converter={x:Static conv:AppConverters.YesNo}}" Width="70"/>
+        <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="160"/>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</UserControl>

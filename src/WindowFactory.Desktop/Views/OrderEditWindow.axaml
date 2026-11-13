@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:conv="using:WindowFactory.Desktop.Converters"
+        x:Class="WindowFactory.Desktop.Views.OrderEditWindow"
+        Title="{Binding Title}" Width="1120" Height="740" MinWidth="900" MinHeight="620"
+        WindowStartupLocation="CenterOwner" Icon="/Assets/logo.png" Background="#EEF2F7">
+  <Grid RowDefinitions="Auto,*,Auto,Auto" Margin="14">
+    <!-- MASTER: заголовок заказа -->
+    <Border Grid.Row="0" Classes="card" Margin="0 0 0 10">
+      <Grid ColumnDefinitions="*,*,Auto" RowDefinitions="Auto,Auto,Auto">
+        <StackPanel Grid.Column="0" Margin="0 0 12 8">
+          <TextBlock Classes="label" Text="Номер документа"/>
+          <TextBlock Text="{Binding OrderNumber}" FontSize="18" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="0 0 12 8">
+          <TextBlock Classes="label" Text="Дата"/>
+          <TextBlock Text="{Binding OrderDateText}" FontSize="16"/>
+        </StackPanel>
+        <Border Grid.Column="2" Classes="badge" VerticalAlignment="Top" HorizontalAlignment="Right"
+                Background="{Binding Status, Converter={x:Static conv:AppConverters.StatusToBrush}}">
+          <TextBlock Text="{Binding Status}" Foreground="White"/>
+        </Border>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 12 8">
+          <TextBlock Classes="label" Text="Заказчик"/>
+          <ComboBox ItemsSource="{Binding Homeowners}" SelectedItem="{Binding SelectedHomeowner}"
+                    IsEnabled="{Binding CanEdit}" HorizontalAlignment="Stretch" PlaceholderText="Выберите заказчика"/>
+          <TextBlock Text="{Binding HomeownerInfo}" Foreground="#64748B" Margin="0 4 0 0"/>
+        </StackPanel>
+        <CheckBox Grid.Row="1" Grid.Column="2" Content="Монтаж (+20%)" IsChecked="{Binding HasInstallation}"
+                  IsEnabled="{Binding CanEdit}" VerticalAlignment="Center"/>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3"
+                    IsVisible="{Binding CancelReason, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+          <TextBlock Classes="label" Text="Причина рекламации"/>
+          <TextBlock Text="{Binding CancelReason}" TextWrapping="Wrap" Foreground="#B91C1C"/>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- DETAIL: спецификация -->
+    <Border Grid.Row="1" Classes="card">
+      <Grid RowDefinitions="Auto,*,Auto">
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0 0 0 8">
+          <TextBlock Classes="h1" FontSize="17" Text="Спецификация (оконные конструкции)" VerticalAlignment="Center"/>
+          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+            <Button Classes="primary" Content="＋ Добавить" Command="{Binding AddUnitCommand}"/>
+            <Button Content="Изменить" Command="{Binding EditUnitCommand}"/>
+            <Button Classes="danger" Content="Удалить" Command="{Binding DeleteUnitCommand}"/>
+          </StackPanel>
+        </Grid>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Units}" SelectedItem="{Binding SelectedUnit}" AutoGenerateColumns="False"
+                  IsReadOnly="True" CanUserSortColumns="True" GridLinesVisibility="Horizontal" BorderBrush="#CBD5E1" BorderThickness="1">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="№" Binding="{Binding No}" Width="50"/>
+            <DataGridTextColumn Header="Профиль" Binding="{Binding ProfileTitle}" Width="*"/>
+            <DataGridTextColumn Header="Стеклопакет" Binding="{Binding GlazingTitle}" Width="2*"/>
+            <DataGridTextColumn Header="Ш × В, мм" Binding="{Binding Size}" Width="120"/>
+            <DataGridTextColumn Header="Створок" Binding="{Binding SashesCount}" Width="90"/>
+            <DataGridTextColumn Header="S, м²" Binding="{Binding AreaM2, StringFormat={}{0:0.###}}" Width="80"/>
+            <DataGridTextColumn Header="Стоимость, ₽" Binding="{Binding Cost, StringFormat={}{0:N2}}" Width="130"/>
+          </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Grid.Row="2" Text="{Binding MaterialsText}" Foreground="#475569" Margin="0 8 0 0"/>
+      </Grid>
+    </Border>
+
+    <!-- Итоги (пересчитываются привязкой данных) -->
+    <Border Grid.Row="2" Classes="card" Margin="0 10 0 0">
+      <Grid ColumnDefinitions="*,*,*,*">
+        <StackPanel><TextBlock Classes="label" Text="Конструкции"/><TextBlock Text="{Binding ConstructionsText}" FontSize="16"/></StackPanel>
+        <StackPanel Grid.Column="1"><TextBlock Classes="label" Text="Монтаж"/><TextBlock Text="{Binding InstallationText}" FontSize="16"/></StackPanel>
+        <StackPanel Grid.Column="2"><TextBlock Classes="label" Text="Подъём на этаж"/><TextBlock Text="{Binding FloorSurchargeText}" FontSize="16"/></StackPanel>
+        <StackPanel Grid.Column="3"><TextBlock Classes="label" Text="ИТОГО"/><TextBlock Text="{Binding TotalText}" FontSize="22" FontWeight="Bold" Foreground="#1D4ED8"/></StackPanel>
+      </Grid>
+    </Border>
+
+    <Grid Grid.Row="3" ColumnDefinitions="*,Auto" Margin="0 10 0 0">
+      <StackPanel>
+        <TextBlock Classes="error" Text="{Binding ErrorText}" IsVisible="{Binding ErrorText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+        <TextBlock Text="{Binding ReadOnlyHint}" Foreground="#92400E" TextWrapping="Wrap"/>
+      </StackPanel>
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+        <Button Classes="primary" Content="Сохранить" Command="{Binding SaveCommand}" IsVisible="{Binding CanEdit}"/>
+        <Button Content="Закрыть" Command="{Binding CloseWindowCommand}"/>
+      </StackPanel>
+    </Grid>
+  </Grid>
+</Window>

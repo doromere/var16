@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="WindowFactory.Desktop.Views.Dialogs.ProfileEditDialog"
+        Title="{Binding Title}" Width="480" SizeToContent="Height" CanResize="False"
+        WindowStartupLocation="CenterOwner" Icon="/Assets/logo.png">
+  <StackPanel Margin="20" Spacing="10">
+    <StackPanel><TextBlock Classes="label" Text="Название системы (бренд)"/><TextBox Text="{Binding BrandTitle}"/></StackPanel>
+    <Grid ColumnDefinitions="*,*,*">
+      <StackPanel Margin="0 0 8 0"><TextBlock Classes="label" Text="Камер"/>
+        <NumericUpDown Value="{Binding ChambersCount}" Minimum="0" Maximum="12" FormatString="0"/></StackPanel>
+      <StackPanel Grid.Column="1" Margin="0 0 8 0"><TextBlock Classes="label" Text="Глубина, мм"/>
+        <NumericUpDown Value="{Binding FrameDepthMm}" Minimum="0" Maximum="200" FormatString="0"/></StackPanel>
+      <StackPanel Grid.Column="2"><TextBlock Classes="label" Text="Цена, ₽/м.п."/>
+        <NumericUpDown Value="{Binding PricePerMeter}" Minimum="0" Maximum="100000" Increment="10" FormatString="0.00"/></StackPanel>
+    </Grid>
+    <TextBlock Classes="error" Text="{Binding ErrorText}" IsVisible="{Binding ErrorText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+      <Button Content="Отмена" Command="{Binding CancelCommand}"/>
+      <Button Classes="primary" Content="Сохранить" Command="{Binding OkCommand}" IsDefault="True"/>
+    </StackPanel>
+  </StackPanel>
+</Window>

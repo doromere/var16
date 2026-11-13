@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="using:WindowFactory.Desktop.Views"
+        x:Class="WindowFactory.Desktop.Views.MainWindow"
+        Title="Фабрика светопрозрачных конструкций — рабочее место"
+        Width="1360" Height="780" MinWidth="1100" MinHeight="600"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Assets/logo.png" Background="#EEF2F7">
+  <DockPanel>
+    <Border DockPanel.Dock="Top" Background="#1D4ED8" Padding="16 10">
+      <Grid ColumnDefinitions="Auto,*,Auto">
+        <Image Grid.Column="0" Source="/Assets/logo.png" Width="38" Height="38" Margin="0 0 12 0"/>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+          <TextBlock Text="{Binding FullName}" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
+          <TextBlock Text="{Binding RoleName}" Foreground="#BFDBFE"/>
+        </StackPanel>
+        <Button Grid.Column="2" Content="Сменить учётную запись" Command="{Binding LogoutCommand}" VerticalAlignment="Center"/>
+      </Grid>
+    </Border>
+    <TabControl Margin="8">
+      <TabControl.Styles><Style Selector="TabItem"><Setter Property="FontSize" Value="17"/></Style></TabControl.Styles>
+      <TabItem Header="Заказы"><v:OrdersView DataContext="{Binding Orders}"/></TabItem>
+      <TabItem Header="Заказчики"><v:HomeownersView DataContext="{Binding Homeowners}"/></TabItem>
+      <TabItem Header="Справочники"><v:CatalogView DataContext="{Binding Catalog}"/></TabItem>
+    </TabControl>
+  </DockPanel>
+</Window>

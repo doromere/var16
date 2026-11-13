@@ -1,0 +1,49 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Style Selector="Window">
+    <Setter Property="FontSize" Value="14"/>
+  </Style>
+  <Style Selector="TextBlock.h1">
+    <Setter Property="FontSize" Value="22"/>
+    <Setter Property="FontWeight" Value="Bold"/>
+  </Style>
+  <Style Selector="TextBlock.label">
+    <Setter Property="Foreground" Value="#475569"/>
+    <Setter Property="Margin" Value="0 0 0 3"/>
+  </Style>
+  <Style Selector="TextBlock.error">
+    <Setter Property="Foreground" Value="#B91C1C"/>
+    <Setter Property="TextWrapping" Value="Wrap"/>
+  </Style>
+  <Style Selector="Button">
+    <Setter Property="Padding" Value="14 7"/>
+    <Setter Property="CornerRadius" Value="6"/>
+  </Style>
+  <Style Selector="Button.primary">
+    <Setter Property="Background" Value="#1D4ED8"/>
+    <Setter Property="Foreground" Value="White"/>
+  </Style>
+  <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="#1E40AF"/>
+    <Setter Property="Foreground" Value="White"/>
+  </Style>
+  <Style Selector="Button.danger">
+    <Setter Property="Background" Value="#DC2626"/>
+    <Setter Property="Foreground" Value="White"/>
+  </Style>
+  <Style Selector="Button.danger:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="#B91C1C"/>
+    <Setter Property="Foreground" Value="White"/>
+  </Style>
+  <Style Selector="Border.card">
+    <Setter Property="Background" Value="White"/>
+    <Setter Property="BorderBrush" Value="#CBD5E1"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="CornerRadius" Value="8"/>
+    <Setter Property="Padding" Value="14"/>
+  </Style>
+  <Style Selector="Border.badge">
+    <Setter Property="CornerRadius" Value="10"/>
+    <Setter Property="Padding" Value="8 2"/>
+  </Style>
+</Styles>

@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="WindowFactory.Desktop.Views.LoginWindow"
+        Title="Вход — Фабрика светопрозрачных конструкций"
+        Width="460" Height="560" CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Assets/logo.png" Background="#EEF2F7">
+  <Border Classes="card" Margin="24" VerticalAlignment="Center">
+    <StackPanel Spacing="12">
+      <Image Source="/Assets/logo.png" Width="72" Height="72" HorizontalAlignment="Center"/>
+      <TextBlock Classes="h1" Text="Авторизация" HorizontalAlignment="Center"/>
+      <TextBlock Text="Фабрика светопрозрачных конструкций" HorizontalAlignment="Center" Foreground="#64748B"/>
+
+      <StackPanel>
+        <TextBlock Classes="label" Text="Логин"/>
+        <TextBox Text="{Binding Login}" Watermark="technolog / manager" IsEnabled="{Binding !IsLocked}"/>
+      </StackPanel>
+      <StackPanel>
+        <TextBlock Classes="label" Text="Пароль"/>
+        <Grid ColumnDefinitions="*,Auto">
+          <TextBox Grid.Column="0" Text="{Binding Password}" PasswordChar="*"
+                   RevealPassword="{Binding IsPasswordRevealed}" IsEnabled="{Binding !IsLocked}"/>
+          <ToggleButton Grid.Column="1" Margin="6 0 0 0" Content="👁" IsChecked="{Binding IsPasswordRevealed, Mode=TwoWay}"
+                        ToolTip.Tip="Показать / скрыть пароль"/>
+        </Grid>
+      </StackPanel>
+
+      <TextBlock Classes="error" Text="{Binding ErrorMessage}" IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+      <Border Background="#FEF3C7" CornerRadius="6" Padding="10" IsVisible="{Binding IsLocked}">
+        <StackPanel Spacing="6">
+          <TextBlock Text="{Binding LockMessage}" TextWrapping="Wrap" Foreground="#92400E" FontWeight="SemiBold"/>
+          <ProgressBar Minimum="0" Maximum="10" Value="{Binding LockSecondsLeft}"/>
+        </StackPanel>
+      </Border>
+
+      <Button Classes="primary" Content="Войти" Command="{Binding LoginCommand}" IsDefault="True"
+              HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+    </StackPanel>
+  </Border>
+</Window>
